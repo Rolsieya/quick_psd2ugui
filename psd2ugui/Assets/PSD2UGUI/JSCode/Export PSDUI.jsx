@@ -665,67 +665,77 @@ function exportLabel(obj,validFileName)
 	// 透明度
 	sceneData += "<opacity>" + obj.opacity +"</opacity>";
 
+    addLabelGradient(obj);
+
+    addLabelOutLine(obj);
+}
+// 处理文本类型的渐变色
+function addLabelGradient(obj)
+{
 	// 新增渐变
 	if(obj.name.search("_JB") >= 0)
-	{
-		var _text = obj.name.substring(obj.name.search("_JB"), obj.name.length);
+    {
+        var _text = obj.name.substring(obj.name.search("_JB"), obj.name.length);
 
-		var params = _text.split("|");
-		params = params[0].split(":");
+        var params = _text.split("|");
+        params = params[0].split(":");
 
-		if (params.length > 1)
-		{
-			sceneData += "<gradient>"
+        if (params.length > 1)
+        {
+            sceneData += "<gradient>"
 
-			for (var i = 0; i < params.length; ++i)
-			{
-				if (params[i].search("_") >=0)
-				{
-					continue;
-				}
+            for (var i = 0; i < params.length; ++i)
+            {
+                if (params[i].search("_") >=0)
+                {
+                    continue;
+                }
 
-				sceneData += params[i];
+                sceneData += params[i];
 
-				if (i < params.length - 1)
-				{
-					sceneData += "|";
-				}
-			}
+                if (i < params.length - 1)
+                {
+                    sceneData += "|";
+                }
+            }
 
-			sceneData += "</gradient>";
-		}
-	}
-
+            sceneData += "</gradient>";
+        }
+    }
+}
+// 处理文本类型的描边
+function addLabelOutLine(obj)
+{
 	// 新增描边
 	if(obj.name.search("_OL") >= 0)
-	{
-		var _text = obj.name.substring(obj.name.search("_OL"), obj.name.length);
+    {
+        var _text = obj.name.substring(obj.name.search("_OL"), obj.name.length);
 
-		var params = _text.split("|");
-		params = params[0].split(":");
+        var params = _text.split("|");
+        params = params[0].split(":");
 
-		if (params.length > 1)
-		{
-			sceneData += "<outline>"
+        if (params.length > 1)
+        {
+            sceneData += "<outline>"
 
-			for (var i = 0; i < params.length; ++i)
-			{
-				if (params[i].search("_") >=0)
-				{
-					continue;
-				}
+            for (var i = 0; i < params.length; ++i)
+            {
+                if (params[i].search("_") >=0)
+                {
+                    continue;
+                }
 
-				sceneData += params[i];
+                sceneData += params[i];
 
-				if (i < params.length - 1)
-				{
-					sceneData += "|";
-				}
-			}
+                if (i < params.length - 1)
+                {
+                    sceneData += "|";
+                }
+            }
 
-			sceneData += "</outline>";
-		}
-	}
+            sceneData += "</outline>";
+        }
+    }
 }
 
 function exportTexture(obj,validFileName)
