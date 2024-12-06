@@ -1109,7 +1109,8 @@ function makeValidFileName(fileName)
 			!sourcePsdName.match("Global") ||
 			!sourcePsdName.match("CustomAtlas"))    // 判断是否为公用的PSD素材文件，如果不是，则自动为图片增加后缀，防止重名。 公用psd文件的图片层不允许重名。
     {
-        validName += "_" + uuid++;
+        // 取消后缀逻辑，重名情况下替换图片，让美术自己处理同名问题
+        //validName += "_" + uuid++;
     }
 
      $.writeln(validName);
