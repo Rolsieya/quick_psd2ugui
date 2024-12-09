@@ -444,15 +444,13 @@ function exportInputField(obj)
     sceneData += ("<Layer>\n<type>InputField</type>\n<name>" + itemName + "</name>\n");
     sceneData += "<layers>";
 
-    // sceneData += "<images>\n";
-
     for (var i = obj.layers.length - 1; 0 <= i; i--)
     {
         exportArtLayer(obj.layers[i]);
     }
 
     sceneData += "</layers>";
-    // sceneData += "\n</images>\n</Layer>";
+
     sceneData += "\n</Layer>";
 }
 
@@ -462,14 +460,12 @@ function exportButton(obj)
     sceneData += ("<Layer>\n<type>Button</type>\n<name>" + itemName + "</name>\n");
     sceneData += "<layers>";
 
-    // sceneData += "<images>\n";
-
     for (var i = obj.layers.length - 1; 0 <= i; i--)
     {
         exportArtLayer(obj.layers[i]);
     }
     sceneData += "</layers>";
-    // sceneData += "\n</images>\n</Layer>";
+
     sceneData += "\n</Layer>";
 }
 
@@ -479,15 +475,13 @@ function exportToggle(obj)
     sceneData += ("<Layer>\n<type>Toggle</type>\n<name>" + itemName + "</name>\n");
     sceneData += "<layers>";
 
-    // sceneData += "<images>\n";
-
     for (var i = obj.layers.length - 1; 0 <= i; i--)
     {
         exportArtLayer(obj.layers[i]);
     }
 
     sceneData += "</layers>";
-    // sceneData += "\n</images>\n</Layer>";
+
     sceneData += "\n</Layer>";
 }
 
@@ -517,7 +511,6 @@ function exportSlider(obj)
     sceneData += "<string>" + params[1] + "</string>"; //滑动方向
     sceneData += "</arguments>";
 
-    // sceneData += "<images>\n";
     sceneData += "<layers>";
 
     for (var i = obj.layers.length - 1; 0 <= i; i--)
@@ -526,7 +519,6 @@ function exportSlider(obj)
     }
     sceneData += "</layers>";
 
-    // sceneData += "\n</images>\n</Layer>";
     sceneData += "\n</Layer>";
 }
 
@@ -546,8 +538,6 @@ function exportScrollBar(obj)
     sceneData += "<string>" + params[1] + "</string>"; //滑动方向
     sceneData += "<string>" + params[2] + "</string>"; //比例
     sceneData += "</arguments>";
-
-    // sceneData += "<images>\n";
     sceneData += "<layers>";
 
     for (var i = obj.layers.length - 1; 0 <= i; i--)
@@ -555,8 +545,6 @@ function exportScrollBar(obj)
         exportArtLayer(obj.layers[i]);
     }
     sceneData += "</layers>";
-
-    // sceneData += "\n</images>\n</Layer>";
     sceneData += "\n</Layer>";
 }
 
@@ -567,7 +555,6 @@ function exportPanel(obj)
 
     exportAllLayers(obj);
 
-    // sceneData += "<images>\n";
     sceneData += "<layers>";
 
     for (var j = obj.artLayers.length - 1; 0 <= j; j--)
@@ -576,7 +563,6 @@ function exportPanel(obj)
     }
     sceneData += "</layers>";
 
-    // sceneData += "\n</images>\n</Layer>";
     sceneData += "\n</Layer>";
 }
 
@@ -788,12 +774,6 @@ function exportImage(obj,validFileName)
 	  sceneData += "<imageType>" + "SliceImage" + "</imageType>\n";
 	  obj.visible = true;
 	  var _objName = obj.name
-	  // var newDoc = app.documents.add(duppedPsd.width, duppedPsd.height,duppedPsd.resolution, _objName+"doc",NewDocumentMode.RGB,DocumentFill.TRANSPARENT)
-	  // app.activeDocument = duppedPsd
-	  // obj.copy()
-	  // app.activeDocument = newDoc
-	  // newDoc.paste()
-	  //   newDoc.activeLayer.name = _objName
 	  var recSize = getLayerRec(duppedPsd.duplicate(),true);
 		sceneData += "<position>";
 		sceneData += "<x>" + recSize.x + "</x>";
