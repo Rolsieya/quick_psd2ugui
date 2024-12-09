@@ -889,6 +889,13 @@ function exportImage(obj,validFileName)
         sceneData += "<string>" + "JPG" + "</string>";  //标识jpg
         sceneData += "</arguments>";
     }
+    // 后续扩展锚点逻辑的话可以在这里添加对应规则（例@Anchor:LeftTop等九种锚点布局枚举）
+    // 注意要把传给Unity的数据填充到arguments内，所以这里后面填充内容的时候要把富文本的头尾都从上面的JPG的判断里拿出来才行
+    // 再注意，这里只给image类型的加了参数，如果其他类型也需要锚点，需要把这个逻辑拆出来，在不同的export内调用才行
+    if(oriName.search("@Anchor") > 0)
+    {
+        
+    }
     
     obj.visible = true;
     saveScenePng(duppedPsd.duplicate(), validFileName, true,null,asJpg,jpgQuality);
