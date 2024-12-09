@@ -40,15 +40,34 @@ namespace PSDUIImporter
             return instance;
         }
 
-//         public static T InstantiateItem<T>(string resourcePatn, string name,GameObject parent) where T : UnityEngine.Object
-//         {
-//             GameObject temp = Resources.Load(resourcePatn, typeof(GameObject)) as GameObject;
-//             GameObject item = GameObject.Instantiate(temp) as GameObject;
-//             item.name = name;
-//             item.transform.SetParent(canvas.transform, false);
-//             ParentDic[item.transform] =  parent.transform;
-//             return item.GetComponent<T>();
-//         }
+        /// <summary>
+        /// 把对象再序列化为XML
+        /// </summary>
+        /// <typeparam name="T">序列化对象</typeparam>
+        /// <param name="filePath">文件路径</param>
+        /// <param name="target">要序列化的对象</param>
+        public static void SserializeXml<T>(string filePath, T target)
+        {
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+
+            using (StreamWriter writer = new StreamWriter(filePath, false, new UTF8Encoding(false)))
+            {
+                xmlSerializer.Serialize(writer, target);
+            }
+        }
+
+        //         public static T InstantiateItem<T>(string resourcePatn, string name,GameObject parent) where T : UnityEngine.Object
+        //         {
+        //             GameObject temp = Resources.Load(resourcePatn, typeof(GameObject)) as GameObject;
+        //             GameObject item = GameObject.Instantiate(temp) as GameObject;
+        //             item.name = name;
+        //             item.transform.SetParent(canvas.transform, false);
+        //             ParentDic[item.transform] =  parent.transform;
+        //             return item.GetComponent<T>();
+        //         }
+
 
         /// <summary>
         /// 加载并实例化prefab，编辑器下不用Resources.Load，否则这些预设会打到安装包
